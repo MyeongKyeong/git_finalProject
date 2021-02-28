@@ -26,6 +26,8 @@ import product.bean.ProductDTO;
 import store.bean.ReviewDTO;
 import store.bean.StoreDTO;
 
+//담당 : 이건탁(회원관리/상점관리/상품관리)
+//     김명경(탈퇴사유분석/신고내역관리/1:1문의 관리)
 
 @Controller
 @RequestMapping(value="admin")
@@ -224,22 +226,7 @@ public class AdminController {
 		adminService.store_productDelete(check);
 		return new ModelAndView("redirect:/admin/storeList");
 	}
-	//신고 내역 출력
-//	@RequestMapping(value="/getComplainList", method=RequestMethod.POST)
-//	public ModelAndView getComplainList(@RequestParam(required=false, defaultValue="1") String pg,
-//				  						 @RequestParam(required=false, defaultValue="20") String viewNum) {
-//		List<StoreDTO> complainList = adminService.getComplainList(pg,viewNum);
-//		//페이징처리
-//		AdminBoardPaging adminStoreBP = adminService.StoreBP(pg,viewNum);
-//				
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("complainList", complainList);
-//		mav.addObject("pg", pg);
-//		mav.addObject("viewNum", viewNum);
-//		mav.addObject("adminStoreBP", adminStoreBP);
-//		mav.setViewName("jsonView");
-//		return mav;
-//	}
+
 	
 	//물품리스트 출력
 	@RequestMapping(value="/getProductAllList", method=RequestMethod.GET)
@@ -343,7 +330,7 @@ public class AdminController {
 		mav.addObject("adminComplainBP", adminComplainBP);
 		mav.setViewName("jsonView");
 		return mav;
-	}
+	}	
 	
 //	B.신고자or신고당한사람 검색 내역 출력
 	@RequestMapping(value="searchReportedMember", method=RequestMethod.POST)

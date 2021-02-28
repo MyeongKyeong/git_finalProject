@@ -16,6 +16,10 @@ import member.bean.MemberDTO;
 import product.bean.ProductDTO;
 import store.bean.ReviewDTO;
 import store.bean.StoreDTO;
+
+//담당 : 이건탁(회원관리/상점관리/상품관리)
+//	       김명경(탈퇴사유분석/신고내역관리/1:1문의 관리)
+
 @Repository
 @Transactional
 public class AdminDAOMybatis implements AdminDAO {
