@@ -11,3 +11,4 @@ src/main/webapp/META-INF/
 pom.xml
 src/main/resources/spring/db.properties
 src/main/webapp/WEB-INF/web.xml
+/.metadata/
