@@ -401,20 +401,24 @@ public class MemberController {
 	public ModelAndView withdraw(@RequestParam Map<String, String> map, HttpSession session) {
 		//map:탈퇴사유 6항목 + 개선사항(주관식) 
 		
-		//탈퇴 시, db에서 데이터를 삭제하지 않고, 아이디-유지, 비밀번호/이메일-난수 처리, 권한-없음, 기타 varchar2값-out으로 설정한다.
+		//탈퇴 시, db 데이터 삭제x. 
+		//아이디-유지, 비밀번호/이메일-난수 처리, 권한-없음, varchar2값-out으로 설정한다.
 		//(데이터를 삭제하면, 탈퇴한 아이디로 타인이 가입하여, 탈퇴한 사람의 행세를 할 수 있기 때문)
-		String mem_id = (String)session.getAttribute("sessionId");
-		String mem_pwd = (((char)((int)(Math.random()*26)+65)) + ((Math.random()*9999999-1)+1))+"";
-		//영문+숫자 랜덤조합. 
-		//이메일은 unique라 'out'이라는 중복값이 들어갈 수 없다. 하지만 해당 아이디로 재가입할 수 있기 때문에 값을 저장하고 있을 수도 없다. 하여 난수를 대신 저장한다
-		String mem_email= (((char)((int)(Math.random()*26)+65)) + ((Math.random()*9999999-1)+1))+"";
+		String mem_id = (String)session.getAttribute("sessionId");//세션에 저장된 로그인 아이디
+		String mem_pwd = (((char)((int)(Math.random()*26)+65)) 
+							+ ((Math.random()*9999999-1)+1))+"";
+		//이메일은 unique라 'out'이라는 중복값이 들어갈 수 없다. 
+		//하지만 해당 아이디로 재가입할 수 있기 때문에 값을 저장하고 있을 수도 없다. 하여 난수를 대신 저장한다
+		String mem_email= 
+				(((char)((int)(Math.random()*26)+65)) 
+						+ ((Math.random()*9999999-1)+1))+"";
 		
 		map.put("mem_id", mem_id);
 		map.put("mem_pwd", mem_pwd); //탈퇴한 회원의 비밀번호에 난수 숫자를 입력하여 로그인 방지
 		map.put("mem_email", mem_email);
 		memberService.withdraw(map);
 		session.invalidate(); //세션 삭제
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/");//메인페이지로 복귀
 	}
 	
 //	[신고하기]===========================================================================

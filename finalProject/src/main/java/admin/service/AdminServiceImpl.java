@@ -17,7 +17,8 @@ import member.bean.MemberDTO;
 import product.bean.ProductDTO;
 import store.bean.ReviewDTO;
 import store.bean.StoreDTO;
-
+//담당 : 이건탁(회원관리/상점관리/상품관리)
+//	       김명경(탈퇴사유분석/신고내역관리/1:1문의 관리)
 @Service
 public class AdminServiceImpl implements AdminService {
    @Autowired
@@ -284,7 +285,7 @@ public class AdminServiceImpl implements AdminService {
   //B.신고 검색 리스트 페이징
   @Override
   public AdminBoardPaging getSearchReportedBP(Map<String, String> map) {
-//	  map: keyword, searchType, pg,viewNum
+	  //map: keyword, searchType, pg,viewNum
      
      int viewNum = Integer.parseInt(map.get("viewNum"));
      System.out.println("view:" +viewNum);
@@ -297,14 +298,13 @@ public class AdminServiceImpl implements AdminService {
      
      adminBoardPaging.makePagingHTML();
      
-     
      return adminBoardPaging;
   }
   
-//	C. 신고 카테고리(게시글/댓글/상점/상품/리뷰) 검색 출력
+  //C. 신고 카테고리(게시글/댓글/상점/상품/리뷰) 검색 출력
   @Override
   public List<ComplainDTO> findWithdrawCate(Map<String, String> map) {
-	  int viewNum = Integer.parseInt(map.get("viewNum"));
+	 int viewNum = Integer.parseInt(map.get("viewNum"));
 	     
      int endNum = Integer.parseInt(map.get("pg"))*viewNum;
      int startNum = endNum-(viewNum-1);
@@ -315,7 +315,7 @@ public class AdminServiceImpl implements AdminService {
   }
   
   
-//  C. 신고 카테고리(게시글/댓글/상점/상품/리뷰) 검색 페이징 처리
+  //C. 신고 카테고리(게시글/댓글/상점/상품/리뷰) 검색 페이징 처리
   @Override
   public AdminBoardPaging getCateBP(Map<String, String> map) {
 	 //map:  withdrawCate, pg,viewNum
@@ -331,21 +331,19 @@ public class AdminServiceImpl implements AdminService {
      
      adminBoardPaging.makePagingHTML();
      
-     
      return adminBoardPaging;
   }
-  
-  
-  
+  //댓글, 리뷰 : 오른쪽 창에 정보 띄우기(페이지 
+  //상품 신고, 상점 신고 : 해당 페이지 윈도우 팝업 창
+  //게시글 신고 : 오른쪽 창에 정보 띄우기 + 윈도우 창 팝업
+  //신고 댓글 내용(글번호, 댓글 작성자, 신고자, 댓글 내용) 가져오기
   @Override
   public CommentDTO getCommentContent(String comment_seq) {
      return adminDAO.getCommentContent(comment_seq) ;
-     
   }
-
+  //신고 상품 후기 내용(리뷰 번호, 리뷰 작성자, 신고자, 리뷰 내용)가져오기
   @Override
   public ReviewDTO getReviewContent(String review_seq) {
-     
      return adminDAO.getReviewContent(review_seq);
   }
   
@@ -354,13 +352,13 @@ public class AdminServiceImpl implements AdminService {
   public void solveComplain(Map<String, Integer> map) {
      adminDAO.solveComplain( map);
   }
-//신고 내역 블라인트처리(게시글/댓글/리뷰에 한해 가능)
+  //신고 내역 블라인트처리(게시글/댓글/리뷰에 한해 가능)
   @Override
   public void blindComplain(String board_seq, String comment_seq, String review_seq, String thisIs) {
      adminDAO.blindComplain(board_seq, comment_seq, review_seq, thisIs);
   }
 
-//   [명경-1:1문의]=========================================================================
+//  [명경-1:1문의]=========================================================================
     //A.1:1문의 전체 리스트 출력
     @Override
     public List<QnaDTO> getQnaList(String pg, String viewNum) {
@@ -385,10 +383,12 @@ public class AdminServiceImpl implements AdminService {
        adminBoardPaging.makePagingHTML();
        return adminBoardPaging;
     }
+    //
     @Override
     public QnaDTO getQnaContent(int qna_seq) {
        return adminDAO.getQnaContent(qna_seq) ;
     }
+    //
     @Override
     public void writeAnswer(Map<String, Object> map) {
        System.out.println(map);

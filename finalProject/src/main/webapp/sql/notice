@@ -8,7 +8,7 @@ CREATE table noticeBoard(
 );
 
 insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,1,'팔로우 숫자가 갑자기 줄었어요','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
-insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,1,'통신판매업자임녀 상품 판매에 필요한 절차가 있나요?','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
+insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,1,'통신판매업자이면 상품 판매에 필요한 절차가 있나요?','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
 insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,1,'상품 판매는 어떻게 하나요?','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
 insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,2,'거래를 하면 안되는 것들은 어떤 것이 있나요?','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
 insert into noticeBoard(option1_id,option2_id,notice_subject,notice_content) values(2,2,'사기거래 피해 발생 시 수사기관 신고는 어떻게 하나요?','자주묻는 질문의 내용 부분입니다. 필요한 내용을 넣으세요.');
